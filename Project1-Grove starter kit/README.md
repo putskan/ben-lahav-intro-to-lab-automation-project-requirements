@@ -26,7 +26,7 @@
  - push the file to your repo.
 
 ## Exercise
-- pressure value: 111
-- led blinks when:
-- led is constant when:
-- buzzer plays when: 
+- pressure value: 100288Pa
+- led blinks when: the btn is clicked.
+- led is constant when: entering the selection mode (upon long button click).
+- buzzer plays when: entering the selection mode (upon long button click).
