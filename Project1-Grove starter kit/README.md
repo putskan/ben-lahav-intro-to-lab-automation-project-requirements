@@ -26,7 +26,7 @@
  - push the file to your repo.
 
 ## Exercise
-- pressure value: 
+- pressure value: 111
 - led blinks when:
 - led is constant when:
 - buzzer plays when: 
