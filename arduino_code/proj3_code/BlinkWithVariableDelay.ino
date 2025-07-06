@@ -22,8 +22,8 @@
   https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink
 */
 
-const int our_led = 4;
-const int blink_delay = 10;
+int our_led = 4;
+int blink_delay = 10;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
