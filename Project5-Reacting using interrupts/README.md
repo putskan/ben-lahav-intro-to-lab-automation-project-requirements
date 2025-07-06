@@ -22,12 +22,13 @@ for (int i = 0; i< 10000; i++){
 }
 ```
 - test if lighting led still works. Why or why not?
-answer here: __________
+answer here: Only if we wait long enough for the for-loop to end, because until reaching the end of the loop, we don't get to digitalWrite.
 
 ## Use interrupt to light led
 - Add code to create an interrupt pin (why can't it be the button pin?). Use a variable for this.
+    Because there are designated pins for interrupts
 - Short the interrupt pin with the button pin
-- test. Does it work?
+- test. Does it work? Yes!
 
 ## Exercises
  - commit and upload your code in this project folder.
