@@ -9,17 +9,18 @@ void setup() {
   Serial.begin(9600);
 
   pinMode(interruptPin, INPUT_PULLUP); // Set pin as input with pull-up resistor
-  attachInterrupt(digitalPinToInterrupt(interruptPin), handleButtonPress, CHANGE);
 
   // initialize the LED pin as an output:
   pinMode(ledPin, OUTPUT);
   // initialize the pushbutton pin as an input:
   pinMode(buttonPin, INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(interruptPin), handleButtonPress, CHANGE);
+
 }
 
 void loop() {
   // read the state of the pushbutton value:
-  buttonState = digitalRead(buttonPin);
   int a = 0;
   for (int i = 0; i< 10000; i++){
     a = 0;
@@ -29,12 +30,13 @@ void loop() {
 }
 
 void handleButtonPress() {
+    buttonState = digitalRead(buttonPin);
+
     Serial.println("Handle Interrupt");
-    if (buttonState == LOW) {
-      Serial.println("Button was clicked, but not anymore.");
+    if (buttonState == HIGH) {
+      Serial.println("Button was clicked.");
       digitalWrite(ledPin, HIGH);
     } else {
-      Serial.println("Button is getting clicked.");
       digitalWrite(ledPin, LOW);
     }
 }
