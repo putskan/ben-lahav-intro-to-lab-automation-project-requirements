@@ -25,17 +25,14 @@ add a screen shot from the logic analyzer below:
 - open an example of the package, examine the code and its functions and how to use them.
 - implement a timer to turn off the LED after 5 seconds
 - note the callback in the timer. When is it called?
-    Every 50 ms, as this is the parameter I chose for MsTimer2::set.
+    Only after the specified time (5 seconds).
 
 ## Exercises
 - check that although the delay of 1 second is still in the loop function, the LED now turns off after 5 seconds
 
 - change the LED time ON from 5 seconds to 30 ms, measure in the scope the time the LED is ON. is it 30 ms? Why or why not?
 answer here: 
-    No. Because I chose the MsTimer2::set callback to be called every 50 ms, the time the led is turned on is lower boundded of 50 ms, and in avg will be 30 + 50/2 = 55 seconds.
-
-    To fix it, we can adjust the parameter to be dependant on the LED time (e.g., time / 30).
-    In the second image below we can see the fix worked.
+    Yes, it works well. Because the callback is now called every 30ms
 
 paste a screen shot from the scope below:
 ![alt text](image-3.png)
