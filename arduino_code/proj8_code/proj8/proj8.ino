@@ -2,16 +2,19 @@
 const int buttonPin = 6;  // the number of the pushbutton pin
 const int ledPin = 4;    // the number of the LED pin
 const int interruptPin = 2; // INT0 on Arduino UNO
+const unsigned long debounceDelay = 100;    // the debounce time; increase if the output flickers
 
+unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
 long interval = 0;
 
 void turnOff() {
     digitalWrite(ledPin, LOW);
     MsTimer2::stop();
+    Serial.println("0"); // button off
 }
 
 void setupTimer(long interval) {
-    MsTimer2::set(interval / 1000.0, turnOff);
+    MsTimer2::set(interval, turnOff);
     MsTimer2::start();
 }
 
@@ -19,6 +22,7 @@ void setup() {
     pinMode(ledPin, OUTPUT);
     pinMode(buttonPin, INPUT);
     pinMode(interruptPin, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(interruptPin), handleButtonPress, CHANGE);
     Serial.begin(9600);
 }
 
@@ -42,8 +46,18 @@ void loop() {
 
 
 void handleButtonPress() {
+    unsigned long prevDebounceTime = lastDebounceTime;
+    lastDebounceTime = millis();
+    if (lastDebounceTime - prevDebounceTime < debounceDelay) {
+        return;
+    }
+
     if (digitalRead(buttonPin) == HIGH) {
       digitalWrite(ledPin, HIGH);
+      setupTimer(interval);
+      Serial.println("1"); // button and LED on
+    } else {
+        Serial.println("2"); // button off
     }
-    setupTimer(interval);
+    
 }
