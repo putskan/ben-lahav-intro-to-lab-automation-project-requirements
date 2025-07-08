@@ -8,12 +8,12 @@ MD_PWM ledPwm(PWM_PIN);
 
 void setup() {
   ledPwm.begin(FREQ);
-  ledPwm.write(128); // Start at 50% brightness
+  ledPwm.write(128);
 }
 
 void loop() {
-  int rotaryValue = analogRead(ROTARY_PIN);           // Read rotary value (0-1023)
-  uint8_t ledValue = map(rotaryValue, 0, 1023, 0, 255); // Map to 0-255
-  ledPwm.write(ledValue);                             // Set LED brightness
-  delay(10);                                          // Small delay for stability
+  int rotaryValue = analogRead(ROTARY_PIN);
+  uint8_t ledValue = map(rotaryValue, 0, 1023, 0, 255);
+  ledPwm.write(ledValue);
+  delay(10);
 }
