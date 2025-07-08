@@ -19,7 +19,10 @@ The purpose of this project is to dim and increase the led light using the rotar
 - test your code.
 - View in scope: Connect Analog 2 (dark blue) to pin 4 in arduino (LED output). Play with the times and triggers until you see the PWM change when turning the rotary.
 - View in voltmeter - stop scope first. See the average voltage change. What is the duty cycle?
+    ~79.12%
 - what happens when using 30Hz instead of 50Hz for the PWM?
+    The duty cycle remained pretty much the same because the on-off ratio is the same. However the light change is more visible to us. That's because we have longer periods for which the light is turned on and off, so our eyes can percieve the changes. Note it does not the 
+
 
 ## Use PWM to control a servo motor
 
