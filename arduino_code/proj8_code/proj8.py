@@ -54,11 +54,13 @@ while True:
             serial_thread = threading.Thread(
                 target=serial_worker,
                 args=(port, baudrate, write_queue, read_queue, stop_event),
-                daemon=True
+                daemon=True,
             )
             serial_thread.start()
+
         print('sending')
         write_queue.put(message)
+        
     # Always check for responses from Arduino
     try:
         while True:
