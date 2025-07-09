@@ -19,24 +19,32 @@
 5. use threading.Timer (from the threading python package) to turn off the led. This will allow the script to perform other tasks while waiting for the button press. This version of the script should be named Reacting_button_press_pymata4_using_timer.py.
 6. Add a Graphical User Interface (GUI) to the timer version of the script. The GUI should display the state of the button (pressed or not pressed) and any actions performed in response to the button press. plus, it should have a textbox input to accept different time intervals for the timer.
 7. light the led for 30 ms. Measure in scopy the length of the led light a 5-10 times and measure the average and standard deviation. Compare to previous arduino and non firmata python code.
+    mean: 43.025
+    std: 4.58
+    Seems very inaccurate compared to before (where it was around 30).
 8. Include comments explaining the functionality of each part of the code.
 9. Write the script in a clean, organized, and efficient manner following good programming practices.
 
 
 ## Exercises
 Paste a screenshot of the GUI here:
+![alt text](image.png)
 
 Paste a screenshot of the logic analyzer here that presents the time the LED is ON when pressing the button.
-
+![alt text](image-1.png)
 ```
 What is the difference between the two versions (with pymata4 and firmata and without) of the script? Which one was easier to code? Where was thread handling easier?
 
-Answer: __________
+
+Answer: pymata was much more comfortable than using the serial directly. We don't have to handle string parsing etc. Additionally, we have builtin callback usage which were useful and convenient, compared to working with threading directly.
+However, it required a lot of firmata's code in the arduino side, which makes things less configurable for us as programmers.
 
 
 What can you say about the accuracy of the timing between the firmata version and your arduino code version?
 which one is more accurate and why?
 
+Answer: The arduino code version was more accurate. We believe the reason is that there's overhead in firmata's code in the arduino side (as it handles other things as well).
+
 What are the advantages and disadvantages of using the pymata4 package?
 
-Answer: __________
+Answer: Wrapped nicely and easy to use, but less modular, as this is not our code.
