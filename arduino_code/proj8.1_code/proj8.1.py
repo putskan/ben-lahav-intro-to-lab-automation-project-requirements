@@ -40,11 +40,8 @@ class App:
         self.set_timer_button = tk.Button(root, text="Set Time", command=self.update_timer)
         self.set_timer_button.pack(pady=5)
 
-        # Start polling loop for button state (to update label)
-        self.poll_button_state()
-
-        # Register callback with hardware
         board.set_pin_mode_digital_input_pullup(BUTTON_PIN, callback=self.button_callback)
+
 
     def update_timer(self):
         try:
@@ -71,17 +68,7 @@ class App:
         else:
             self.button_state_label.config(text="Button State: Released")
 
-    def poll_button_state(self):
-        # poll pin value to reflect state in GUI (if needed)
-        pin_value = board.digital_read(BUTTON_PIN)
-        if pin_value == 0:
-            self.button_state_label.config(text="Button State: Pressed")
-        else:
-            self.button_state_label.config(text="Button State: Released")
-        self.root.after(200, self.poll_button_state)
 
-
-# --- Run ---
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
