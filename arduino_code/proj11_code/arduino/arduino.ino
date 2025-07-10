@@ -7,7 +7,7 @@
 #define FAN_PIN 7
 #define ANGLE_NOISE_THRESHOLD 0
 #define ANGLE_SMOOTHING_PARAM 0.05
-#define LOG_EVERY 500
+#define LOG_EVERY 50
 
 Servo fanServo;
 bool buzzerOn = false;
@@ -37,19 +37,21 @@ void setup() {
 }
 
 void logToOled() {
-  Oled.clear();
   Oled.setCursor(0, 0);
   Oled.print("Angle: ");
   Oled.print(angle);
   Oled.print("°");
+  if (angle >= -10) {
+    Oled.print("  ");
+  }
 
   Oled.setCursor(0, 2);
   Oled.print("Fan: ");
-  Oled.print(abs(angle) > ANGLE_THRESHOLD ? "OFF" : "ON");
+  Oled.print(abs(angle) > ANGLE_THRESHOLD ? "OFF" : "ON ");
 
   Oled.setCursor(0, 4);
   Oled.print("Buzzer: ");
-  Oled.print(buzzerOn ? "ON" : "OFF");
+  Oled.print(buzzerOn ? "ON " : "OFF");
   Oled.refreshDisplay();
 }
 
