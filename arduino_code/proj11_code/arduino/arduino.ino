@@ -6,13 +6,15 @@
 #define SERVO_PIN 6               // Grove servo port
 #define FAN_PIN 7
 #define ANGLE_NOISE_THRESHOLD 0
-#define ANGLE_SMOOTHING_PARAM 0.2
+#define ANGLE_SMOOTHING_PARAM 0.05
+#define LOG_EVERY 500
 
 Servo fanServo;
 bool buzzerOn = false;
 float prevAngle = 99999;
 float angle;
 float startTime;
+unsigned long lastLogTime;
 
 void setup() {
   Serial.begin(9600);
@@ -57,6 +59,12 @@ void logToSerial() {
   Serial.println("buzzerOn=" + String(buzzerOn));
 }
 
+
+void logAll() {
+  logToSerial();
+  logToOled();
+}
+
 void loop() {
   // Read accelerometer
   float ax = Accelerometer.readX();
@@ -91,13 +99,9 @@ void loop() {
     digitalWrite(FAN_PIN, HIGH);
   }
 
-
-
   // Display status on OLED
-  logToSerial();
-  logToOled();
-
-
-
-  delay(50);
+  if ((millis() -  lastLogTime) > LOG_EVERY) {
+    logAll();
+    lastLogTime = millis();
+  }
 }
