@@ -35,5 +35,9 @@ Build a system that:
 
 ## Exercises
 1. paste here the videos (one fo the hardware and one of the GUI).
+
+<video controls src="1000289390.mp4" title="Title"></video>
+
 3. add the csv file to the project. make sure it reflects all the states of the project.
 5. If you have multiple folders, write here which is the final version: 
+    'arduino.ino' and 'main.py' under the 'proj11_code' folder
